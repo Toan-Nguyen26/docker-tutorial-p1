@@ -1,26 +1,26 @@
 version: '3'
 
 services:
-  db:
-    image: mariadb
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: your_root_password
-      MYSQL_DATABASE: todolist
-      MYSQL_USER: your_username
-      MYSQL_PASSWORD: your_password
-    healthcheck:
-      interval: 5s
-      retries: 3
-      test:
-        [
-          "CMD",
-          "healthcheck.sh",
-          "--su-mysql",
-          "--connect",
-          "--innodb_initialized"
-        ]
-      timeout: 30s
+  # db:
+  #   image: mariadb
+  #   restart: always
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: your_root_password
+  #     MYSQL_DATABASE: todolist
+  #     MYSQL_USER: your_username
+  #     MYSQL_PASSWORD: your_password
+  #   healthcheck:
+  #     interval: 5s
+  #     retries: 3
+  #     test:
+  #       [
+  #         "CMD",
+  #         "healthcheck.sh",
+  #         "--su-mysql",
+  #         "--connect",
+  #         "--innodb_initialized"
+  #       ]
+  #     timeout: 30s
 
   web:
     build: .
@@ -29,6 +29,6 @@ services:
       - .:/app
     ports:
       - 8000:8000
-    depends_on:
-      db:
-        condition: service_healthy
+    # depends_on:
+    #   db:
+    #     condition: service_healthy
